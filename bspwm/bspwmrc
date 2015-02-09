@@ -1,0 +1,41 @@
+#! /bin/sh
+bspc config window_gap        12
+#bspc config window_gap        0
+#bspc config top_padding     16
+bspc config bottom_padding  0
+bspc config left_padding    0
+bspc config right_padding   0
+bspc config border_width 0
+
+#bspc config split_ratio         1
+bspc config borderless_monocle  true
+bspc config gapless_monocle     true
+
+bspc monitor -d 1 2 3 4 5 6 7
+
+bspc rule -a Firefox desktop=^2
+bspc rule -a pcmanfm desktop=^3
+bspc rule -a Geany desktop=^5
+bspc rule -a subl3 desktop=^5
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc rule -a Steam desktop=^6
+
+bspc rule -a thunderbird desktop=^2
+
+bspc rule -a anki  desktop=^7
+bspc rule -a xournal desktop=^7
+bspc rule -a tagainijisho desktop=^7
+bspc rule -a mpv floating=on
+#bspc rule -a mpv desktop=^4
+#bspc rule -a urxvt floating=on
+#bspc rule -a Team Fortress 2 desktop=^7
+
+bspc config top_padding 18
+#bspc config -d focused top_padding 28
+#bspc config -d focused right_padding 28
+#bspc config -d focused left_padding 28
+panel &
+
+#bspwmrc
+

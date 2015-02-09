@@ -1,0 +1,256 @@
+# sxhkdrc
+#
+
+super + button{4}
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` + 2))
+
+super + button{5}
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` - 2))
+
+#
+# Padding
+#
+
+super + shift + button{4}
+	new_size=$((`bspc config -d focused top_padding` + 2)); \
+	bspc config -d focused top_padding $new_size; \
+	bspc config -d focused right_padding $new_size; \
+	bspc config -d focused bottom_padding $new_size; \
+	bspc config -d focused left_padding $new_size;
+
+super + shift + button{5}
+	new_size=$((`bspc config -d focused top_padding` - 2)); \
+	bspc config -d focused top_padding $new_size; \
+	bspc config -d focused right_padding $new_size; \
+	bspc config -d focused bottom_padding $new_size; \
+	bspc config -d focused left_padding $new_size;
+
+super + alt + Escape
+	bspc quit 1 && pkill bar && pkill conky
+
+super + shift + h
+    bspc desktop -F horizontal
+
+super + shift + v
+    bspc desktop -F vertical
+
+#super + r
+#    bspc desktop -R 90
+
+# Presel window for splitting
+super + ctrl + {h,j,k,l}
+	bspc window -p {left,down,up,right}
+
+# Move window into presel position
+super + shift {a,s,d,f}
+	bspc window -w {left.manual,down.manual,up.manual,right.manual}
+
+super + ctrl + {1-9}
+	bspc window -r 0.{1-9}
+
+alt + q
+	bspc config top_padding 0
+
+alt + shift + q
+	bspc config top_padding 36
+
+super + w
+	bspc window -c
+
+super + t
+	bspc desktop -l next
+
+super + b
+	bspc desktop -B
+
+super + {s,f}
+	bspc window -t {floating,fullscreen}
+
+super + {grave,Tab}
+	bspc {window,desktop} -f last
+
+super + apostrophe
+	bspc window -s last
+
+super + {o,i}
+	bspc control --record-history off; \
+	bspc window {older,newer} -f; \
+	bspc control --record-history on
+
+super + y
+	bspc window -w last.manual
+
+super + m
+	bspc window -s biggest
+
+super + {_,shift + }{h,j,k,l}
+	bspc window -{f,s} {left,down,up,right}
+
+super + {_,shift + }c
+	bspc window -f {next,prev}
+
+super + {comma,period}
+	bspc desktop -C {backward,forward}
+
+#super + bracket{left,right}
+#	bspc desktop -f {prev,next}
+
+super + ctrl + {h,j,k,l}
+	bspc window -p {left,down,up,right}
+
+super + ctrl + {_,shift + }space
+	bspc {window -p cancel,desktop -c}
+
+super + alt + {h,j,k,l}
+	bspc window -e {left -10,down +10,up -10,right +10}
+
+super + alt + shift + {h,j,k,l}
+	bspc window -e {right -10,up +10,down -10,left +10}
+
+super + ctrl + {1-9}
+	bspc window -r 0.{1-9}
+
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,window -d} ^{1-9,10}
+
+~button1
+	bspc pointer -g focus
+
+super + button{1-3}
+	bspc pointer -g {move,resize_side,resize_corner}
+
+super + !button{1-3}
+	bspc pointer -t %i %i
+
+super + @button{1-3}
+	bspc pointer -u
+
+#
+# wm independent hotkeys
+#
+
+##############################
+Volume controls
+##############################
+
+# Raises volume
+super + shift + bracket{right}
+	amixer set Master 5%+; \
+	sh ~/.bin/vol.sh
+
+# Lowers volume
+super + shift + bracket{left}
+	amixer set Master 5%-; \
+	sh ~/.bin/vol.sh
+
+
+##############################
+music controls
+##############################
+
+# previous song
+super + bracket{left}
+#   mpc prev
+	cmus-remote -r
+
+# next song
+super + bracket{right}
+#   mpc next
+	cmus-remote -n
+
+#pause/play
+super + shift + space
+#	mpc {pause,play}
+	cmus-remote -u
+
+alt + bracket{left}
+#	mpc seek -5%
+	cmus-remote -k -5
+alt + bracket{right}
+#	mpc seek +5%
+	cmus-remote -k +5
+
+##############################
+Applications
+##############################
+
+#Rss reader
+super + n
+    urxvt -e newsbeuter
+
+#music player
+super + m
+    urxvt -e ncmpcpp
+
+#file manager
+super + p
+    urxvt -e ranger
+
+#terminal
+super + Return
+	urxvt
+
+#fuzzy file search
+super + shift + f
+	urxvt -e ffs
+
+#dmenu
+super + space
+	rofi -rnow -sidebar-mode -terminal urxvt -opacity 95 -font Tewi -fg "#ded0b4" -bg "#2D2C28" -bw 1 -bc "#ded0b4" -hlbg "#403E39"  
+
+super + r
+	rofi -now -sidebar-mode -terminal urxvt -opacity 95 -font Tewi -fg "#ded0b4" -bg "#2D2C28" -bw 1 -bc "#ded0b4" -hlbg "#403E39"
+
+#super + space
+#	bspc config bottom_padding 10; \
+#    dmenu_run -fn '-*-terminus-*-*-*-*-*-*-*-*-*-*-*-*' -nb '#2D2C28' -nf '#D2C5BC' -dim 0.5 -b; \
+#    sleep 10; \
+#    bspc config bottom_padding 0
+
+#alt + w
+
+
+##############################
+OTher misc commands
+##############################
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Toggle pseudotiled (floating in tile)
+alt + shift + space
+	bspc window -t pseudo_tiled
+#super + control + k and then super + enter for even 4tile
+
+#reload panel
+alt + p
+	pkill -USR1 -x panel; \
+	panel
+
+#reload mpd
+alt + m
+	pkill -USR1 -x mpd; \
+	mpd
+
+#kill some processes to improve gaming preformance on my (aging) laptop
+alt + g
+	pkill compton; \
+	pkill panel; \
+	pkill ncmpcpp; \
+#	redshift -x; \
+    bspc config top_padding 0
+
+
+#undo previous command
+alt + shift + g
+	bspc config top_padding 36; \
+	compton --config /home/sweeb/.compton.conf -b --vsync opengl; \
+#    redshift -l 53:06 &; \
+    panel
+
+#Just testing something out but feel free to try(it's not really useful for me but i'll leave it here just in case)
+alt + {1-9}
+	mpc seek +{1-9}
+
+alt + shift + {1-9}
+	mpc seek -{1-9}

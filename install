@@ -1,0 +1,31 @@
+#!/bin/bash
+#lo
+#
+sudo pacman -S base-devel fakeroot jshon expac git
+wget https://aur.archlinux.org/packages/pa/packer/PKGBUILD
+makepkg
+sudo pacman -U packer-*.pkg.tar.gz
+sudo pacman -Syyu
+
+packer -S aura-bin
+sudo aura -Rns packer
+
+cd ~/
+git clone https://github.com/pettanko/dotfiles dotfiles
+
+sudo pacman -S $(< dotfiles/pkglist.txt)
+sudo aura -A $(< dotfiles/aurpkglist.txt)
+
+git clone https://github.com/lukedmor/magnet
+sudo cp magnet/magnet /usr/local/bin/magnet
+
+
+
+sudo pacman -Sc
+sudo pacman-optimize
+sudo pacman -Rns $(pacman -Qtdq)
+sudo pacman -Syyu
+
+#todo
+#
+#Add restoration from external hdd home backup
