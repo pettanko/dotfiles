@@ -1,0 +1,3 @@
+rssdler -r
+
+echo "rss torrents downloaded successfully on $(date)" >> ~/.log

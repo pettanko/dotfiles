@@ -1,0 +1,3 @@
+#!/bin/bash
+xflux -l 53 -g 06 &
+

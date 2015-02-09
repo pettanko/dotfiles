@@ -1,0 +1,5 @@
+cd /home/sweeb
+./.scripts/cleanupscript/cleanup /home/sweeb/
+./.scripts/cleanupscript/cleanup /home/sweeb/Downloads/
+cd
+echo "Cleanupscript ran successfully on $(date)" >> ~/.log

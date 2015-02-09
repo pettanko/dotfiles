@@ -1,0 +1,132 @@
+#
+# GLOBAL
+#_________
+### Panel fonts
+# You MUST configure two fonts! You need a X font, check their names with xlsfonts
+# I have instructions on how to add a new font in my Monégasque repo.
+font="-xos4-terminus-medium-r-normal--0-0-72-72-c-0-iso8859-2"
+font2="-windows-montecarlopanel-medium-r-normal--11-110-72-72-c-60-microsoft-cp1252"
+
+### Panel height
+height="18"
+
+### Colors
+bg_global="#FF2D2C28"
+fg_global="#FFF0F0F0"
+
+### Squares
+fg_squares="#ff5C5541"
+
+# Where to look for the screen brightness value
+brightness_path="/sys/devices/virtual/backlight/apple_backlight/brightness"
+maxbrightness_path="/sys/devices/virtual/backlight/apple_backlight/max_brightness"
+# And for the keyboard brightness value
+keyboard_path="/sys/class/leds/smc::kbd_backlight/brightness"
+
+### Where to save process ID and other necessary things
+dzen_popup_path="/tmp/dslider.pid"
+
+
+#
+# START MENU
+#_____________
+# You will need mygtkmenu
+startmenu_cmd="mygtkmenu ~/.config/GTKmenu/AppleMenu > /dev/null"
+
+### Icon
+start_icon=" "
+#start_icon="  "
+#start_icon=" Menu "
+
+### Colors
+bg_startmenu="#ff2D2C28"
+fg_startmenu="#ffeddec9"
+
+
+#
+# WORKSPACES
+#______________
+### Icons
+occupied_focus="  "
+occupied="  "
+empty_focus="  "
+empty="  "
+
+### Colors
+bg_tags="#ff2D2C28"
+fg_tags="#ffeddec9"
+bg_urgenttags="#ff402929"
+fg_urgenttags="#ffeddec9"
+
+
+#
+# not-stat
+#__________
+### NOTIFICATION ICONS
+bg_icons="#ff2D2C28"
+fg_icons="#ffded0b4"
+
+### NOTIFICATIONS
+bg_notifications="#ff2D2C28"
+fg_notifications="#ffD2C5BC"
+bg_exclamation="#ffA73E28"
+
+
+#
+# panel-monitor and panel-music
+#______________________________
+### Colors
+bg_monitor="#ff2D2C28"
+fg_monitor="#ffD2C5BC"
+bg_button="#ff9D534A"
+fg_button="#ffeddec9"
+bg_button_selected="#ffBA6258"
+fg_button_selected="#ffeddec9"
+fg_close="#ffABA08B"
+inactive="#ff788275"
+
+
+#
+# DZEN POPUPS
+#____________
+dzen_font="MonteCarlo-8"
+
+### Slider
+empty_slider=""
+full_slider=""
+indicator_slider=""
+
+### Colors
+dzen_bg="#2D2C28"
+dzen_bg2="#1A1917"
+dzen_fg="#D2C5BC"
+dzen_sel="#A73E28"
+dzen_empty="#403A2E"
+dzen_close="#ABA08B"
+dzen_sideline="#D2C5BC"
+
+
+#
+# LAYOUTS
+#_________
+
+### Colors
+bg_monocle="#ff2D2C28"
+fg_monocle="#ff5C5541"
+
+
+#
+# MAILS
+#________
+### Colors
+bg_mails="#ffA73E28"
+fg_mails="#ffeddec9"
+
+
+#
+# DATE AND CLOCK
+#______________
+### Colors
+bg_clock="#ff2D2C28"
+fg_clock="#ffD2C5BC"
+fg_clockemph="#ffD2C5BC"

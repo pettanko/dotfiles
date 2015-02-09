@@ -1,0 +1,119 @@
+20150128.13:24 CRITICAL Unexpected Error: Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 2087, in main
+    run()
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 2057, in run
+    rssparse(key)
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 1897, in rssparse
+    try: page = downloader(getConfig()['threads'][tName]['link'])
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 585, in urllib2RetrievePage
+    url, urlNotEncoded = encodeQuoteUrl( url, encoding='utf-8' ), url
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 392, in encodeQuoteUrl
+    if not percentIsQuoted(url) and percentNeedsQuoted(url):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 350, in percentIsQuoted
+    if sStr.count(i): return True
+AttributeError: 'NoneType' object has no attribute 'count'
+
+20150128.13:24 CRITICAL Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 556, in cookieHandler
+    else: cj.load(cFile)
+  File "/usr/lib/python2.7/cookielib.py", line 1761, in load
+    f = open(filename)
+IOError: [Errno 2] No such file or directory: '/home/sweeb/.mozilla/firefox/user/cookies.txt'
+Cookies disabled. RSSDler will reload the cookies if you fix the problem
+20150128.13:24 CRITICAL Unexpected Error: Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 2087, in main
+    run()
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 2057, in run
+    rssparse(key)
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 1897, in rssparse
+    try: page = downloader(getConfig()['threads'][tName]['link'])
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 585, in urllib2RetrievePage
+    url, urlNotEncoded = encodeQuoteUrl( url, encoding='utf-8' ), url
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 392, in encodeQuoteUrl
+    if not percentIsQuoted(url) and percentNeedsQuoted(url):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 350, in percentIsQuoted
+    if sStr.count(i): return True
+AttributeError: 'NoneType' object has no attribute 'count'
+
+20150128.13:27 CRITICAL Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 556, in cookieHandler
+    else: cj.load(cFile)
+  File "/usr/lib/python2.7/cookielib.py", line 1761, in load
+    f = open(filename)
+IOError: [Errno 2] No such file or directory: '/home/sweeb/.mozilla/firefox/user/cookies.txt'
+Cookies disabled. RSSDler will reload the cookies if you fix the problem
+20150128.13:27 CRITICAL Unexpected Error: Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 2087, in main
+    run()
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 2057, in run
+    rssparse(key)
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 1897, in rssparse
+    try: page = downloader(getConfig()['threads'][tName]['link'])
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 585, in urllib2RetrievePage
+    url, urlNotEncoded = encodeQuoteUrl( url, encoding='utf-8' ), url
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 392, in encodeQuoteUrl
+    if not percentIsQuoted(url) and percentNeedsQuoted(url):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 350, in percentIsQuoted
+    if sStr.count(i): return True
+AttributeError: 'NoneType' object has no attribute 'count'
+
+20150128.13:28 CRITICAL Unexpected Error: Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 2087, in main
+    run()
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 2057, in run
+    rssparse(key)
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 1897, in rssparse
+    try: page = downloader(getConfig()['threads'][tName]['link'])
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 585, in urllib2RetrievePage
+    url, urlNotEncoded = encodeQuoteUrl( url, encoding='utf-8' ), url
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 392, in encodeQuoteUrl
+    if not percentIsQuoted(url) and percentNeedsQuoted(url):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 350, in percentIsQuoted
+    if sStr.count(i): return True
+AttributeError: 'NoneType' object has no attribute 'count'
+
+20150128.13:29 CRITICAL Unexpected Error: Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 2087, in main
+    run()
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 2057, in run
+    rssparse(key)
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 1897, in rssparse
+    try: page = downloader(getConfig()['threads'][tName]['link'])
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 585, in urllib2RetrievePage
+    url, urlNotEncoded = encodeQuoteUrl( url, encoding='utf-8' ), url
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 392, in encodeQuoteUrl
+    if not percentIsQuoted(url) and percentNeedsQuoted(url):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 350, in percentIsQuoted
+    if sStr.count(i): return True
+AttributeError: 'NoneType' object has no attribute 'count'
+
+20150128.13:29 CRITICAL Unexpected Error: Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 2087, in main
+    run()
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 2057, in run
+    rssparse(key)
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 1897, in rssparse
+    try: page = downloader(getConfig()['threads'][tName]['link'])
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 585, in urllib2RetrievePage
+    url, urlNotEncoded = encodeQuoteUrl( url, encoding='utf-8' ), url
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 392, in encodeQuoteUrl
+    if not percentIsQuoted(url) and percentNeedsQuoted(url):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 350, in percentIsQuoted
+    if sStr.count(i): return True
+AttributeError: 'NoneType' object has no attribute 'count'
+
+20150128.13:31 CRITICAL Unexpected Error: Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 2087, in main
+    run()
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 2057, in run
+    rssparse(key)
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 1897, in rssparse
+    try: page = downloader(getConfig()['threads'][tName]['link'])
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 585, in urllib2RetrievePage
+    url, urlNotEncoded = encodeQuoteUrl( url, encoding='utf-8' ), url
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 392, in encodeQuoteUrl
+    if not percentIsQuoted(url) and percentNeedsQuoted(url):
+  File "/usr/lib/python2.7/site-packages/rssdler.py", line 350, in percentIsQuoted
+    if sStr.count(i): return True
+AttributeError: 'NoneType' object has no attribute 'count'
+

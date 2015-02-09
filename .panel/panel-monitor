@@ -1,0 +1,116 @@
+#!/bin/sh
+
+### Load color settings ###
+. panel-settings
+
+### Close the dzen popup if it exists ###
+dslider close
+
+### Create the menu ###
+# If there is no argument => Create just the pink buttons
+# If there is an argument => Create the pink buttons and expand the appropriate button
+
+monitor=""
+
+## Configure each button title (the name that will be displayed in the panel)
+#  If your button title is longer than two characters, you will have to do some
+# adjustments in dslider-content
+#  The button title can be as long as you want, but the button variable must
+# be *TWO CHARACTERS LONG*!
+#    Xx="<Button title>"
+Vl="Vl"
+Kb="Kb"
+Wm="Wm"
+Sc="Sc"
+
+## If the button has a slider, add the variable here
+sliderlist="Vl Sc"
+
+## Create each button (to add a button, add the two characters variable here and some stuff in the case statement)
+for Button in Wm Vl Kb Sc
+do
+    ## For the focused button ##
+    if [ "$1" == "$Button" ]
+    then
+        cmd_return="panel-monitor"
+        arrow=""
+
+        case $Button in
+        Sc) # backlight
+            down="sudo mbp_backlight down ; pkill not-stat ; not-stat $Button &"
+            up="sudo mbp_backlight up ; pkill not-stat ; not-stat $Button &"
+
+            message=" %{A:$down:}%{A}%{A:$up:}%{A}%{AW:dslider Sc:}$arrow%{A} "
+        ;;
+        Kb) # keyboard layout
+            currentLayout=$(setxkbmap -print -v 7 | grep layout)
+            currentLayout=${currentLayout: -2}
+            
+            message=" "
+            for layout in Ie Jp
+            do
+                layoutCmd="setxkbmap -model macintosh -layout ${layout,,} ; panel-monitor $Button ; pkill not-stat ; not-stat $Button &"
+                if [ "${layout,,}" = "$currentLayout" ]; then
+                    button="$layout"
+                else
+                    button="%{F$inactive}%{A:$layoutCmd:}$layout%{A}%{F$fg_monitor}"
+                fi
+                message+="$button "
+            done
+        ;;
+        Vl) # Master volume
+            mute="%{A:amixer set Master toggle ; pkill not-stat ; not-stat Mt &:}M%{A} "
+            down="amixer set Master 1%- ; pkill not-stat ; not-stat $Button &"
+            up="amixer set Master 1%+ ; pkill not-stat ; not-stat $Button &"
+
+            message=" $mute%{A:$down:}%{A}%{A:$up:}%{A}%{AW:dslider Vl:}$arrow%{A} "
+        ;;
+        Wm)
+            rotateLeft="%{A:bspc desktop -R -90:}%{A}"
+            rotateRight="%{A:bspc desktop -R 90:}%{A}"
+            flipHor="%{A:bspc desktop -F vertical:}%{A}"
+            flipVer="%{A:bspc desktop -F horizontal:}%{A}"
+            monocle="%{A:bspc desktop -l next:}%{A}"
+
+            message=" $rotateLeft $flipHor $flipVer $rotateRight $monocle "
+        ;;
+        esac
+
+        ## If a button is already opened, it's needed to be taken into account to calculate where to draw the popup
+        opened=$Button
+
+        ## Title of the *focused* button
+        #title="${!Button}"
+        title="" # Print an arrow instead of the button title if it's focused
+
+        ## Colors of the focused button
+        bg_button_final="$bg_button_selected"
+        fg_button_final="$fg_button_selected"
+
+    else
+        ## For normal, unfocused, buttons ##
+        title=${!Button}
+        message=" "
+        cmd_return="panel-monitor "
+        cmd_return+="$Button"
+
+        # If the button has a slider, make the slider appear if you click on the button
+        if [[ $sliderlist == *$Button* ]]
+        then
+            cmd_return+="; dslider $opened${Button}i"
+        fi
+
+        ## Colors of normal buttons
+        bg_button_final="$bg_button"
+        fg_button_final="$fg_button"
+    fi
+
+    monitor+="%{AW:$cmd_return:}%{B$bg_button_final}%{F$fg_button_final} $title %{A}%{B$bg_monitor}%{F$fg_monitor}$message%{B-}%{F-}"
+
+done
+
+### Add close button ###
+monitor+="%{B$bg_monitor}%{F$fg_close}%{A:echo c > /tmp/panel-fifo ; dslider close:}%{A} %{B-}%{F-}"
+
+### Send to panel ###
+echo "c" "$monitor" > /tmp/panel-fifo

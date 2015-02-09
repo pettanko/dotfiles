@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Load settings (colors, etc)
+#. panel-settings
+
+#
+# Close and clean if a dzen submenu is already opened
+#
+
+cleaning ()
+{
+    pkill -f "dzen2 -p -m -x -408 -y 18 -w 408 -h 20"
+    pkill -f 'tail -f /tmp/dzen-menu-fifo'
+    panel-torrents full
+}
+clean_tail="pkill -f 'tail -f /tmp/dzen-menu-fifo'"
+pgrep -f "dzen2 -p -m -x -408 -y 18 -w 408 -h 20" > /dev/null && $(cleaning) && exit
+
+
+#
+# Make the submenu window
+#
+# INFO
+mountlist=$(lsblk -l -o "MOUNTPOINT" | grep "/media")
+lines=$(echo "$mountlist" | wc -l)
+
+# FIFO
+[ -e "/tmp/dzen-menu-fifo" ] && rm "/tmp/dzen-menu-fifo"
+mkfifo "/tmp/dzen-menu-fifo"
+
+# TITLE
+title="^fg(#878438)Mounted drive^fg() list:"
+
+# CREATE THE POPUP
+(echo "$title"
+exec tail -f /tmp/dzen-menu-fifo) | dzen2 -p -m -x -408 -y 18 -w 408 -h 20 -fn 'MonteCarlo-8' -fg '#DED0B4' -bg '#1A1917' -l $lines -e "onstart=uncollapse;button1=menuprint,exit,exec:$clean_tail;button3=exit,exec:$clean_tail;button4=scrollup;button5=scrolldown" | while read FNAME; do
+    case $FNAME in
+    "The list is empty!")
+        break
+        ;;
+    *)
+        FNAME=${FNAME:4}
+        urxvt -e ranger "$FNAME" &
+        ;;
+    esac
+done &
+
+# CREATE CONTENT FOR THE POPUP
+dzen-mount-content $lines

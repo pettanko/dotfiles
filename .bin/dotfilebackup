@@ -1,0 +1,3 @@
+rsync -arvk --delete ~/.Xresources ~/.xinitrc ~/.rtorrent.rc ~/.compton.conf ~/.config/bspwm ~/.config/sxhkd ~/.config/dunst ~/.config/ranger ~/.ncmpcpp ~/.newsbeuter ~/.bin ~/.config/mpv ~/.panel ~/.rssdler ~/dotfiles
+
+echo "Dotfiles backed up successfully on $(date)" >> ~/.log

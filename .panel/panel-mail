@@ -1,0 +1,52 @@
+#!/bin/sh
+
+# Absolute path, else cron won't find it
+. /home/sweeb/.panel/panel-settings
+
+mailbox1=$(ls /home/sweeb/Mail/free/Inbox/new | wc -l)
+mailbox2=$(ls /home/sweeb/Mail/hotmail/Inbox/new | wc -l)
+
+mails()
+{
+    ##Mailbox 1
+    if [ "$mailbox1" -gt "0" ]
+        then
+            messagemailbox1="$mailbox1 "
+    fi
+    ##Mailbox 2
+    if [ "$mailbox2" -gt "0" ]
+        then
+            messagemailbox2="$mailbox2 "
+    fi
+
+    ##Both
+    if [ "$mailbox2" -gt "0" -a "$mailbox1" -gt "0" ]; then
+            middleand="+ "
+            #extraspace=" "
+    fi
+    if [ "$mailbox2" -gt "0" -o "$mailbox1" -gt "0" ]; then
+            messages=" %{B$bg_mails}%{F$fg_mails}%{A:panel-mail small:run-or-raise mutt &:}$extraspace   "
+            endmail="$extraspace%{B-}%{F-}%{A}"
+    fi
+
+echo "$messages$messagemailbox2$middleand$messagemailbox1$endmail"
+}
+
+mails_reduced()
+{
+    if [ "$mailbox2" -gt "0" -o "$mailbox1" -gt "0" ]; then
+        echo " %{A:panel-mail:run-or-raise mutt &:}%{B$bg_mails}%{F$fg_mails}  %{B-}%{F-}%{A}"
+    fi
+}
+
+case "$1" in
+    small)
+        echo "M$(mails_reduced)" > /tmp/panel-fifo
+    ;;
+    full)
+        echo "M$(mails)" > /tmp/panel-fifo
+    ;;
+    *)
+        echo "M$(mails)" > /tmp/panel-fifo
+    ;;
+esac

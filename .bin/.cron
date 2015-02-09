@@ -1,0 +1,7 @@
+#backup to external hdd
+sudo rsync -arvz --delete --prune-empty-dirs /etc /home /usr/local /media/asdf/backup
+
+echo "backup ran successfully on $(date)" >> ~/.log
+#todo
+#add cleanupscript support,Done
+#update dotfile repo

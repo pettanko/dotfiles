@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+player=''
+supported=( 'mpc' )
+
+for x in "${supported[@]}"; do
+    if command -v "$x" &> /dev/null; then
+        player="$x"
+    fi
+done
+
+if [[ -z "$player" ]]; then
+    printf 1>&2 'no supported music player found\n'
+    printf 1>&2 '    fzmp currently supports: %s\n' "${supported[*]}"
+
+fi
+
+if [[ ! -x $HOME/.fzf/fzf ]]; then
+    echo "command not found: $HOME/.fzf/fzf" 1>&2
+fi
+
+do_mpc() {
+    mapfile -t songs < <(mpc listall | sort -r | "$HOME/.fzf/fzf" --prompt='Â» ' --reverse -m -e +s +2)
+    if (( ${#songs[@]} > 0 )); then
+        #TODO: if -c or --clear mpc clear
+        printf '%s\n' "${songs[@]}" | mpc -q add # && [[ -n $1 ]]
+        #TODO: if -v or --verbose printf 'added %d songs: \n' "${#songs[@]}"
+        #                         printf '    %s\n' "${songs[@]}" endif
+        index=$(mpc playlist | wc -l)
+        if (( ${#songs[@]} > 1 )); then
+            index=$(( $index - ${#songs[@]} + 1))
+            mpc -q random off
+        fi
+        mpc -q play "$index"
+    fi
+}
+
+case "$player" in
+    'mpc') do_mpc ;;
+esac

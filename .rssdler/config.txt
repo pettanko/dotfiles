@@ -1,0 +1,46 @@
+
+[global]
+downloadDir = /home/sweeb/Downloads/.torrentfiles/
+workingDir = /home/sweeb/.rssdler
+minSize = 0
+log = 1
+logFile = /home/sweeb/.rssdler/log.txt
+runOnce = true
+urllib = True
+scanMins = 0
+sleepTime = 0
+
+[Maria]
+link = http://www.nyaa.se/?page=rss&term=maria+witch+horriblesubs+720p&maxage=10
+active = true
+directory = /home/sweeb/.torrents
+
+[Kantai]
+link = http://www.nyaa.se/?page=rss&term=kantai+horriblesubs+720p&maxage=10
+active = true
+directory = /home/sweeb/.torrents
+
+[Idolmaster]
+link = http://www.nyaa.se/?page=rss&term=idolm@ster+horriblesubs+720p&maxage=10
+active = true
+directory = /home/sweeb/.torrents
+
+[military]
+link = http://www.nyaa.se/?page=rss&term=military+horriblesubs+720p&maxage=10
+active = true
+directory = /home/sweeb/.torrents
+
+[saekano]
+link = http://www.nyaa.se/?page=rss&term=saekano+horriblesubs+720p&maxage=10
+active = true
+directory = /home/sweeb/.torrents
+
+[shirobako]
+link = http://www.nyaa.se/?page=rss&term=shirobako+horriblesubs+720p&maxage=10
+active = true
+directory = /home/sweeb/.torrents
+
+[isuca]
+link = http://www.nyaa.se/?page=rss&term=isuca+horriblesubs+720p&maxage=10
+active = true
+directory = /home/sweeb/.torrents

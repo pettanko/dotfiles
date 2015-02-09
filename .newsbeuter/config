@@ -1,0 +1,16 @@
+auto-reload yes
+browser firefox
+cleanup-on-quit yes
+download-path "/home/sweeb/Downloads/"
+feed-sort-order title-dec
+max-downloads 4
+notify-always yes
+notify-format "newsbeuter: %n unread articles within %f unread feeds"
+notify-program notify-send
+notify-xterm yes
+notify-screen yes
+player mpv
+refresh-on-startup yes
+reload-time 20
+reload-threads 2
+

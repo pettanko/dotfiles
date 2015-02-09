@@ -1,0 +1,6 @@
+cd /home/sweeb/dotfiles
+git add .
+git commit -m "Updated some stuff"
+git push -u origin master
+cd
+echo "Dotfiles uploaded successfully on $(date)" >> ~/.log

@@ -1,0 +1,27 @@
+#! /bin/sh
+if [ $(pgrep -cx panel) -gt 1 ] ; then
+    printf "%s\n" "The panel is already running." >&2
+    exit 1
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
+# Settings
+. panel-settings
+bspc config top_padding $height
+
+# Time and wm info 
+bspc control --subscribe > "$PANEL_FIFO" &
+clock -i 60 -sf "S%{B$bg_clock}  %{F$fg_squares} %{F$fg_clockemph}%d %{F$fg_clock}%b  %{F$fg_squares}%{F$fg_clock} %H:%M %{B-}%{F-}" > "$PANEL_FIFO" &
+
+# Make the panel
+cat "$PANEL_FIFO" | panel-skeleton | bar -g 1440x$height -B $bg_global -F $fg_global -f "$font,$font2" | while read line; do eval "$line"; done &
+echo $height
+# Mails and notifications
+panel-mail &
+panel-torrents &
+not-stat Mu &
+wait
