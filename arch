@@ -1,0 +1,31 @@
+modprobe dm-crypt
+cryptsetup -c aes-xts-plain64 -y -s 512 luksFormat /dev/sda2
+cryptsetup luksOpen /dev/sda2 lvm
+
+pvcreate /dev/mapper/lvm
+vgcreate main /dev/mapper/lvm
+lvcreate -L 20GB -n root main
+lvcreate -L 8GB -n swap main
+lvcreate -l 100%FREE -n home main
+
+mkswap /dev/mapper/main-swap
+mkfs.ext4 /dev/mapper/main-root
+mkfs.ext4 /dev/mapper/main-home
+
+mount /dev/mapper/main-root /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+mkdir /mnt/home
+mount /dev/mapper/main-home /mnt/home
+
+pacstrap /mnt base base-devel
+
+pacstrap /mnt grub-bios
+
+genfstab -p -U /mnt > /mnt/etc/fstab
+
+echo 'Finished!, Type "arch-chroot /mnt" to begin customisation'
+
+
+
+
