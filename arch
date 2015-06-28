@@ -24,7 +24,8 @@ pacstrap /mnt grub-bios
 
 genfstab -p -U /mnt > /mnt/etc/fstab
 
-echo 'Finished!, Type "arch-chroot /mnt" to begin customisation'
+cp idgas.sh /mnt
+archchroot /mnt
 
 
 
